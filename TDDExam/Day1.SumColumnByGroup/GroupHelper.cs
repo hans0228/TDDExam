@@ -29,38 +29,38 @@ namespace Day1.GroupSumByColumn
             return result.ToArray();
         }
 
-        public static int[] SumByCost(Book[] books, int groupRows)
-        {
-            var count = books.Length;
-            int skip = 0;
+        //public static int[] SumByCost(Book[] books, int groupRows)
+        //{
+        //    var count = books.Length;
+        //    int skip = 0;
 
-            List<int> result = new List<int>();
-            int sum;
-            while (count - skip > 0)
-            {
-                sum = books.Skip(skip).Take(groupRows).Sum(x => x.Cost);
-                result.Add(sum);
-                skip += groupRows;
-            }
+        //    List<int> result = new List<int>();
+        //    int sum;
+        //    while (count - skip > 0)
+        //    {
+        //        sum = books.Skip(skip).Take(groupRows).Sum(x => x.Cost);
+        //        result.Add(sum);
+        //        skip += groupRows;
+        //    }
 
-            return result.ToArray();
-        }
+        //    return result.ToArray();
+        //}
 
-        public static int[] SumByRevenu(Book[] books,int groupRows)
-        {
-            var count = books.Length;
-            int skip = 0;
+        //public static int[] SumByRevenu(Book[] books,int groupRows)
+        //{
+        //    var count = books.Length;
+        //    int skip = 0;
 
-            List<int> result = new List<int>();
-            int sum;
-            while (count - skip > 0)
-            {
-                sum = books.Skip(skip).Take(groupRows).Sum(x => x.Revenu);
-                result.Add(sum);
-                skip += groupRows;
-            }
+        //    List<int> result = new List<int>();
+        //    int sum;
+        //    while (count - skip > 0)
+        //    {
+        //        sum = books.Skip(skip).Take(groupRows).Sum(x => x.Revenu);
+        //        result.Add(sum);
+        //        skip += groupRows;
+        //    }
 
-            return result.ToArray();
-        }
+        //    return result.ToArray();
+        //}
     }
 }
