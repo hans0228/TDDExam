@@ -35,36 +35,6 @@ namespace Day1.GroupSumByColumn.Tests
             };
         }
 
-        //[TestMethod()]
-        //public void ThreeRows_ByGroup_Sum_ByCost()
-        //{
-        //    // arrange
-
-
-        //    var expected = new int[] { 6, 15, 24, 21 };
-
-        //    // act
-        //    var actual = GroupHelper.SumByCost(books, 3);
-
-        //    // assert
-        //    expected.ToExpectedObject().ShouldEqual(actual);
-        //}
-
-        //[TestMethod()]
-        //public void FourRows_ByGroup_Sum_ByRevenu()
-        //{
-        //    // arrange
-
-
-        //    var expected = new int[] { 50, 66, 60 };
-
-        //    // act
-        //    var actual = GroupHelper.SumByRevenu(books, 4);
-
-        //    // assert
-        //    expected.ToExpectedObject().ShouldEqual(actual);
-        //}
-
         [TestMethod()]
         public void ThreeRows_ByGroup_Sum_ByCost_FromBooks()
         {
