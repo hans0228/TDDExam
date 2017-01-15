@@ -11,15 +11,12 @@ using FluentAssertions;
 namespace Day1.GroupSumByColumn.Tests
 {
     [TestClass()]
-    public class GroupHelperTests
+    public class IEnumerableGenericExtensionTests
     {
-        private static Book[] books;
 
-
-        [ClassInitialize()]
-        public static void MyClassInitialize(TestContext testContext)
+        private Book[] GetBooks()
         {
-            books = new Book[]
+            return new Book[]
             {
                 new Book{ Id = 1,Cost = 1, Revenu = 11,  SellPrice = 21},
                 new Book{ Id = 2,Cost = 2, Revenu = 12,  SellPrice = 22},
@@ -39,13 +36,12 @@ namespace Day1.GroupSumByColumn.Tests
         public void ThreeRows_ByGroup_Sum_ByCost_FromBooks()
         {
             // arrange
-
-
+            var books = GetBooks();
             var expected = new int[] { 6, 15, 24, 21 };
 
 
             // act
-            var actual = GroupHelper.SumByColumn<Book>(books, 3, new Func<Book, int>((x) => x.Cost));
+            var actual = books.SumByColumn(3, x => x.Cost).ToArray();
 
             // assert
             expected.ToExpectedObject().ShouldEqual(actual);
@@ -55,24 +51,25 @@ namespace Day1.GroupSumByColumn.Tests
         public void FourRows_ByGroup_Sum_ByRevenu_FromBooks()
         {
             // arrange
-
+            var books = GetBooks();
 
             var expected = new int[] { 50, 66, 60 };
 
             // act
-            var actual = GroupHelper.SumByColumn<Book>(books, 4, new Func<Book, int>((x) => x.Revenu));
+            var actual = books.SumByColumn(4, x => x.Revenu).ToArray();
 
             // assert
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
         [TestMethod()]
-        public void GroupRows_Bigger_Than_Collection_Length()
+        public void GroupRows_Should_Bigger_Than_Minus_One()
         {
             // arrange
+            var books = GetBooks();
 
             // act
-            Action act = () => GroupHelper.SumByColumn<Book>(books, books.Length + 1, new Func<Book, int>((x) => x.Revenu));
+            Action act = () => books.SumByColumn(-1, x => x.Revenu).ToArray();
             // assert
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }

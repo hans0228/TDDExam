@@ -6,27 +6,25 @@ using System.Threading.Tasks;
 
 namespace Day1.GroupSumByColumn
 {
-    public class GroupHelper
+    public static class IEnumerableGenericExtension
     {
-        public static int[] SumByColumn<T>(T[] collection, int groupRows, Func<T, int> func)
+        public static IEnumerable<int> SumByColumn<T>(this IEnumerable<T> collection, int groupRows, Func<T, int> func)
         {
-            var count = collection.Length;
+            var count = collection.Count();
             int skip = 0;
 
             if (groupRows < 0 )
                 throw new ArgumentOutOfRangeException("groupRows shouldn be bigger than zero");
 
 
-            List<int> result = new List<int>();
             int sum;
-            while (count - skip > 0)
+            while (skip < count)
             {
                 sum = collection.Skip(skip).Take(groupRows).Sum(func);
-                result.Add(sum);
+                yield return sum;
                 skip += groupRows;
             }
 
-            return result.ToArray();
         }
     }
 }
