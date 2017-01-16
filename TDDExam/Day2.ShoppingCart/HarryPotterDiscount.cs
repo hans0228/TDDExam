@@ -21,9 +21,10 @@ namespace Day2.ShoppingCart
         public decimal CaculateDiscount(SaleBook[] shoppingItems)
         {
             // 找出 HarryPotter 系列書籍，產生一個新的集合
-            var books = shoppingItems.Where(x => harryPotters.Contains(x.ISBN) && x.Count > 0);
+            var books = shoppingItems.Where(x => harryPotters.Contains(x.ISBN) 
+                                                 && x.Count > 0).ToArray();
 
-            var TotalAmount = 0m;
+            var totalAmount = 0m;
 
             while (books.SumByColumn(x => x.Count) > 0)
             {
@@ -31,43 +32,40 @@ namespace Day2.ShoppingCart
                 var bookTypes = books.Count();
                 if (bookTypes == 5)
                 {
-                    TotalAmount += books.SumByColumn(x => x.Price) * 0.75m;
+                    totalAmount += books.SumByColumn(x => x.Price) * 0.75m;
                 }
 
                 if (bookTypes == 4)
                 {
-                    TotalAmount += books.SumByColumn(x => x.Price) * 0.8m;
+                    totalAmount += books.SumByColumn(x => x.Price) * 0.8m;
                 }
 
                 if (bookTypes == 3)
                 {
-                    TotalAmount += books.SumByColumn(x => x.Price) * 0.9m;
+                    totalAmount += books.SumByColumn(x => x.Price) * 0.9m;
                 }
 
                 if (bookTypes == 2)
                 {
-                    TotalAmount += books.SumByColumn(x => x.Price) * 0.95m;
+                    totalAmount += books.SumByColumn(x => x.Price) * 0.95m;
                 }
 
                 if (bookTypes == 1)
                 {
-                    TotalAmount += books.SumByColumn(x => x.Price);
+                    totalAmount += books.SumByColumn(x => x.Price);
                 }
 
-                foreach (var book in books)
+                // 避免有 multiple enumraton 的問題，補上 ToArray()
+                // 行號 25、64，不加上 ToArray()，測試案例就會有錯
+                books = books.Select(x =>
                 {
-                    book.Count--;
-                }
+                    x.Count--;
+                    return x;
+                }).Where(x => x.Count > 0).ToArray();
 
-                //books = books.Select(x => {
-                //    x.Count--;
-                //    return x;
-                //});
-
-                books = books.Where(x => x.Count > 0);
             }
 
-            return TotalAmount;
+            return totalAmount;
         }
     }
 }
