@@ -126,7 +126,7 @@ namespace Day2.ShoppingCart.Test
                 new SaleBook { ISBN="9573319861", Name="哈利波特(5)：鳳凰會的密令", Price=100, Count=0 }
             };
 
-            var expected = 375m;
+            var expected = 370m;
 
             // act
             var actual = target.CaculateDiscount(shoppingItems);
