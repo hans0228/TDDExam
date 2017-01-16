@@ -28,5 +28,24 @@ namespace Day2.ShoppingCart.Test
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        public void Buy_First_One_Second_Two()
+        {
+            // arrange
+            var target = new HarryPotterDiscount();
+            var shoppingItems = new SaleBook[] {
+                new SaleBook { ISBN="9573317249", Name="哈利波特(1)：神秘的魔法石", Price=100, Count=1 },
+                new SaleBook { ISBN="9573317583", Name="哈利波特(2)：消失的密室", Price=100, Count=1 }
+            };
+
+            var expected = 190m;
+
+            // act
+            var actual = target.CaculateDiscount(shoppingItems);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }
