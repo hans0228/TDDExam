@@ -60,7 +60,7 @@ namespace Day2.ShoppingCart.Test
                 new SaleBook { ISBN="9573318008", Name="哈利波特(3)：阿茲卡班的逃犯", Price=100, Count=1 }
             };
 
-            var expected = 190m;
+            var expected = 270m;
 
             // act
             var actual = target.CaculateDiscount(shoppingItems);
