@@ -26,5 +26,11 @@ namespace Day1.GroupSumByColumn
             }
 
         }
+
+        public static int SumByColumn<T>(this IEnumerable<T> collection, Func<T, int> func)
+        {
+            var count = collection.Count();
+            return collection.Take(count).Sum(func);
+        }
     }
 }

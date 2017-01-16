@@ -73,5 +73,17 @@ namespace Day1.GroupSumByColumn.Tests
             // assert
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
+
+        [TestMethod()]
+        public void GroupAllRecordByOneColumn()
+        {
+            // arrange
+            var books = GetBooks();
+            var expected = 176;
+            // act
+            var actual = books.SumByColumn(x => x.Revenu);
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
