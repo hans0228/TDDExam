@@ -35,6 +35,11 @@ namespace Day2.ShoppingCart
                 return count * 100 * 0.8m;
             }
 
+            if (count == 5 && shoppingItems.All(x => x.Count == 1))
+            {
+                return count * 100 * 0.75m;
+            }
+
             throw new InvalidOperationException();
         }
     }
