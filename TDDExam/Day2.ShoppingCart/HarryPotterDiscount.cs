@@ -7,7 +7,7 @@ namespace Day2.ShoppingCart
 {
     public class HarryPotterDiscount
     {
-        private string[] harryPotterISBNs = { "9573317249", "9573317583" };
+        private string[] harryPotterISBNs = { "9573317249", "9573317583", "9573318008" };
         public HarryPotterDiscount()
         {
         }
@@ -23,6 +23,11 @@ namespace Day2.ShoppingCart
             if (count == 2 && shoppingItems.All(x => x.Count == 1))
             {
                 return count * 100 * 0.95m;
+            }
+
+            if (count == 3 && shoppingItems.All(x => x.Count == 1))
+            {
+                return count * 100 * 0.9m;
             }
 
             throw new InvalidOperationException();
