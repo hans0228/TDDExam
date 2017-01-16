@@ -27,39 +27,42 @@ namespace Day2.ShoppingCart
 
             while (books.SumByColumn(x => x.Count) > 0)
             {
-                // 有買的書籍
-                var buyBooks = books.Where(x => x.Count > 0).Select(x => x);
                 // 書籍種類個數
-                var bookKinds = buyBooks.Count();
-                if (bookKinds == 5)
+                var bookTypes = books.Count();
+                if (bookTypes == 5)
                 {
-                    TotalAmount += buyBooks.SumByColumn(x => x.Price) * 0.75m;
+                    TotalAmount += books.SumByColumn(x => x.Price) * 0.75m;
                 }
 
-                if (bookKinds == 4)
+                if (bookTypes == 4)
                 {
-                    TotalAmount += buyBooks.SumByColumn(x => x.Price) * 0.8m;
+                    TotalAmount += books.SumByColumn(x => x.Price) * 0.8m;
                 }
 
-                if (bookKinds == 3)
+                if (bookTypes == 3)
                 {
-                    TotalAmount += buyBooks.SumByColumn(x => x.Price) * 0.9m;
+                    TotalAmount += books.SumByColumn(x => x.Price) * 0.9m;
                 }
 
-                if (bookKinds == 2)
+                if (bookTypes == 2)
                 {
-                    TotalAmount += buyBooks.SumByColumn(x => x.Price) * 0.95m;
+                    TotalAmount += books.SumByColumn(x => x.Price) * 0.95m;
                 }
 
-                if (bookKinds == 1)
+                if (bookTypes == 1)
                 {
-                    TotalAmount += buyBooks.SumByColumn(x => x.Price);
+                    TotalAmount += books.SumByColumn(x => x.Price);
                 }
 
                 foreach (var book in books)
                 {
                     book.Count--;
                 }
+
+                //books = books.Select(x => {
+                //    x.Count--;
+                //    return x;
+                //});
 
                 books = books.Where(x => x.Count > 0);
             }
