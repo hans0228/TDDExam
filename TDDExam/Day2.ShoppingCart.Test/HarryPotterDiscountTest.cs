@@ -29,6 +29,7 @@ namespace Day2.ShoppingCart.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void Buy_First_One_Second_Two()
         {
             // arrange
