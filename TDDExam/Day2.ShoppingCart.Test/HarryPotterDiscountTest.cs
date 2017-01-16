@@ -23,7 +23,7 @@ namespace Day2.ShoppingCart.Test
             var expected = 100m;
 
             // act
-            var actual = target.CaculateByDiscount(shoppingItems);
+            var actual = target.CaculateDiscount(shoppingItems);
 
             // assert
             Assert.AreEqual(expected, actual);
