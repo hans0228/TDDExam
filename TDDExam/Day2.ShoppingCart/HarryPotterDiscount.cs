@@ -7,14 +7,12 @@ namespace Day2.ShoppingCart
 {
     public class HarryPotterDiscount
     {
-        private SaleBook[] harryPotters =
-            new SaleBook[] {
-                new SaleBook { ISBN="9573317249", Name="哈利波特(1)：神秘的魔法石", Price=0, Count=0 },
-                new SaleBook { ISBN="9573317583", Name="哈利波特(2)：消失的密室", Price=0, Count=0 },
-                new SaleBook { ISBN="9573318008", Name="哈利波特(3)：阿茲卡班的逃犯", Price=0, Count=0 },
-                new SaleBook { ISBN="9573318318", Name="哈利波特(4)：火盃的考驗", Price=0, Count=0 },
-                new SaleBook { ISBN="9573319861", Name="哈利波特(5)：鳳凰會的密令", Price=0, Count=0 }
-            };
+        private string[] harryPotters ={
+            "9573317249",
+            "9573317583",
+            "9573318008",
+            "9573318318",
+            "9573319861"};
 
         public HarryPotterDiscount()
         {
@@ -22,22 +20,12 @@ namespace Day2.ShoppingCart
 
         public decimal CaculateDiscount(SaleBook[] shoppingItems)
         {
-            // 找出 HarryPotter 系列書籍，並取得售價、購買數量，產生一個新的集合
-            var books = harryPotters.Select(y =>
-            {
-                var book = shoppingItems.FirstOrDefault(x => x.ISBN == y.ISBN);
-                if (book == null)
-                    return y;
-
-                y.Price = book.Price;
-                y.Count = book.Count;
-                return y;
-
-            });
+            // 找出 HarryPotter 系列書籍，產生一個新的集合
+            var books = shoppingItems.Where(x => harryPotters.Contains(x.ISBN) && x.Count > 0);
 
             var TotalAmount = 0m;
 
-            while (books.Where(x => x.Count > 0).SumByColumn(x => x.Count) > 0)
+            while (books.SumByColumn(x => x.Count) > 0)
             {
                 // 有買的書籍
                 var buyBooks = books.Where(x => x.Count > 0).Select(x => x);
@@ -68,11 +56,12 @@ namespace Day2.ShoppingCart
                     TotalAmount += buyBooks.SumByColumn(x => x.Price);
                 }
 
-                books = books.Select(x =>
+                foreach (var book in books)
                 {
-                    x.Count = x.Count - 1;
-                    return x;
-                });
+                    book.Count--;
+                }
+
+                books = books.Where(x => x.Count > 0);
             }
 
             return TotalAmount;
