@@ -7,7 +7,7 @@ namespace Day2.ShoppingCart
 {
     public class HarryPotterDiscount
     {
-        private string[] harryPotterISBNs = { "9573317249", "9573317583", "9573318008", "9573318318" };
+        private string[] harryPotterISBNs = { "9573317249", "9573317583", "9573318008", "9573318318", "9573319861" };
         public HarryPotterDiscount()
         {
         }
