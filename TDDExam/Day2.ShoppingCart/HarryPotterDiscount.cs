@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Day2.ShoppingCart.Test;
-using Day1.GroupSumByColumn;
 using System.Linq;
 
 namespace Day2.ShoppingCart
