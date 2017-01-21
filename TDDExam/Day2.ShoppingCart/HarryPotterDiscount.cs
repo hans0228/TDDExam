@@ -43,6 +43,14 @@ namespace Day2.ShoppingCart
                 // 書籍種類個數
                 var bookTypes = books.Count();
 
+                // 如果書籍只剩一種，就直接處理吧
+                if (bookTypes == 1)
+                {
+                    var book = books.First();
+                    totalAmount += book.Price * book.Count * _discountByBookTypes[bookTypes];
+                    break;
+                }
+
                 // 依據書籍種類個數的價格加總，即每個種類取 1 本價格加總，再乘上相對應種類的折扣數
                 totalAmount += books.Sum(x => x.Price) * _discountByBookTypes[bookTypes];
 
